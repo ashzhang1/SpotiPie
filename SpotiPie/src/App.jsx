@@ -1,12 +1,14 @@
 import { useState } from 'react'
+import LandingPage from './pages/LandingPage'
+import FeaturePage from './pages/FeaturePage'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <>
-      <h1>SpotiPie</h1>
-    </>
+    <div>
+      <LandingPage />
+      <FeaturePage />
+    </div>
   )
 }
 
