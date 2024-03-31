@@ -1,13 +1,11 @@
 import { useState } from 'react'
-import LandingPage from './pages/LandingPage'
-import FeaturePage from './pages/FeaturePage'
+import HomePage from './pages/HomePage'
 
 function App() {
 
   return (
     <div>
-      <LandingPage />
-      <FeaturePage />
+      <HomePage />
     </div>
   )
 }
