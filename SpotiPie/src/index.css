@@ -133,6 +133,10 @@ div.nav-elements-container button:hover {
   margin-top: 0;
 }
 
+.features {
+  margin-bottom: 20px;
+}
+
 .feature--title {
   font-size: 28px;
   color: #A6A6A6;

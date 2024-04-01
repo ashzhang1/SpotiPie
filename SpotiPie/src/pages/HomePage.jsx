@@ -4,10 +4,10 @@ import FeatureSection from '../components/FeatureSection'
 import NavBar from '../components/NavBar'
 
 export default function HomePage() {
-  const featureSectionRef = useRef(null); // Create a ref for the FeatureSection
+  const featureSectionRef = useRef(null);
 
   const handleFeaturesClick = () => {
-    featureSectionRef.current.scrollIntoView({ behavior: 'smooth' }); // Smoothly scroll to the FeatureSection
+    featureSectionRef.current.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
