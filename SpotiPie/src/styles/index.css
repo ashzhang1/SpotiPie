@@ -4,6 +4,7 @@
 body {
   margin: 0;
   padding: 0;
+  overflow: hidden;
   font-family: 'Arial', sans-serif;
 }
 
@@ -127,7 +128,7 @@ div.nav-elements-container button:hover {
 
 
 .feature--main--title {
-  color: white;
+  color: #B9D7B7;
   font-size: 52px;
   margin-bottom: 0;
   margin-top: 0;
@@ -153,3 +154,50 @@ div.nav-elements-container button:hover {
   height: 710px;
   margin-top: 100px;
 }
+
+/* visualisations page */
+.visualisations--page--container {
+  width: 100vw;
+  height: 100vh;
+  background-color: #121212;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.visualisations--page--title {
+  color: #C4B1D4;
+  font-size: 72px;
+  width: 630px;
+}
+
+.visualisations--page--title--container {
+  margin-left: 5%;
+  border-style: dashed;
+  border-color: #00FF5B;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.proceed--message--container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 5%;
+}
+
+.proceed--message--button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 42px;
+  font-weight: bold;
+  transition: transform 0.3s ease;
+}
+
+.proceed--message--button:hover{
+  cursor: pointer;
+  transform: translateY(-5px);
+}
+

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import HomePage from './pages/HomePage'
-import TestRedirectPage from './pages/TestRedirectPage'
+import VisualisationsPage from './pages/VisualisationsPage'
 
 function App() {
 
@@ -10,7 +10,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route index element={<HomePage/>}/>
-          // <Route path="/test" element={<TestRedirectPage />}/>
+          <Route path="/test" element={<VisualisationsPage />}/>
         </Routes>
       </BrowserRouter>
     </div>

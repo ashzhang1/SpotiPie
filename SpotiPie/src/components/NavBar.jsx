@@ -1,9 +1,13 @@
 import React from "react"
 
-export default function NavBar({ onFeaturesClick, handleSpotifyLogin }) {
+export default function NavBar({ onFeaturesClick}) {
 
   function openGithub() {
     window.open("https://github.com/ashzhang1?tab=repositories", "_blank", "noreferrer");
+  }
+
+  const routeToPage = () => {
+    window.location.href = '/test'
   }
 
   return (
@@ -11,7 +15,7 @@ export default function NavBar({ onFeaturesClick, handleSpotifyLogin }) {
         <h1 className="nav--title">SpotiPie</h1>
         <div className="nav-elements-container">
             <button onClick={onFeaturesClick}>Features</button>
-            <button onClick={handleSpotifyLogin}>Get Started</button>
+            <button onClick={routeToPage}>Visualisations</button>
             <button onClick={openGithub}>GitHub</button>
         </div>
         <p className="navbar--message">Coded with 💖 by Ashley Zhang</p>
