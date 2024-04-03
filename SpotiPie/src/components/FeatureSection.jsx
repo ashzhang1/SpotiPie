@@ -6,11 +6,11 @@ import miffyImage from '../assets/miffy.jpeg'
 
 export default function FeatureSection() {
 
-  const features = data.features.map(feature => {
+  const features = data.features.map((feature, index) => {
     return (
-    <Feature {...feature} />
+    <Feature key={index} {...feature} />
     )
-})
+  })
 
   return (
     <div className='feature--page--container'>

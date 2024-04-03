@@ -4,7 +4,6 @@
 body {
   margin: 0;
   padding: 0;
-  overflow: hidden;
   font-family: 'Arial', sans-serif;
 }
 
@@ -162,19 +161,20 @@ div.nav-elements-container button:hover {
   background-color: #121212;
   margin: 0;
   padding: 0;
-  overflow: hidden;
 }
 
 .visualisations--page--title {
   color: #C4B1D4;
   font-size: 72px;
   width: 630px;
+  margin-top: 0;
+  margin-bottom: 0px;
 }
 
 .visualisations--page--title--container {
   margin-left: 5%;
-  border-style: dashed;
-  border-color: #00FF5B;
+  /* border-style: dashed;
+  border-color: #00FF5B; */
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -185,6 +185,7 @@ div.nav-elements-container button:hover {
   justify-content: center;
   align-items: center;
   margin-right: 5%;
+  transition: transform 0.3s ease;
 }
 
 .proceed--message--button {
@@ -193,11 +194,63 @@ div.nav-elements-container button:hover {
   color: white;
   font-size: 42px;
   font-weight: bold;
-  transition: transform 0.3s ease;
 }
 
-.proceed--message--button:hover{
+.proceed--message--button:hover {
+  cursor: pointer;
+}
+
+.proceed--message--container:hover{
   cursor: pointer;
   transform: translateY(-5px);
+}
+
+/* visualisation info cards */
+.all--cards--container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.visualisation--info--card--container {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card--info--title {
+  font-size: 42px;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 5px;
+  transition: color 0.3s ease;
+}
+
+.visualisation--description--container {
+  width: 400px;
+  height: 350px;
+  background-color: #353535;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card--text {
+  color: #9F9E9E;
+  font-size: 22px;
+  transition: color 0.3s ease;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.visualisation--info--card--container:hover .card--info--title {
+  color: #C5E3D9;
+}
+.visualisation--info--card--container:hover .card--text {
+  color: #C5E3D9;
+}
+
+.card--svg {
+  height: 50px;
 }
 

@@ -1,0 +1,19 @@
+{
+    "cards": [
+        {
+            "title": "Charts",
+            "description": "Utilising histograms, pie charts, and scatter plots, visualise your listening patterns, encompassing your most recent favourite artists, genres, and tracks.",
+            "imgSource": "graph"
+        },
+        {
+            "title": "Tables",
+            "description": "For a comprehensive experience, examine your insights in a structured tabular format, presenting a detailed breakdown of your musical preferences.",
+            "imgSource": "table"
+        },
+        {
+            "title": "Indexes",
+            "description": "View index scores  that elucidate facets such as danceability, energy levels, and mood, allowing for a nuanced understanding of your unique music persona.",
+            "imgSource": "calculator"
+        }
+    ]
+}
