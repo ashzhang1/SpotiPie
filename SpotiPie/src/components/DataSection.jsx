@@ -1,6 +1,6 @@
 import React from "react"
 
-export default function DataSection() {
+export default function DataSection(props) {
 
   return (
     <div>

@@ -31,19 +31,26 @@ body {
 }
 
 /* Nav Bar */
-.landing--page--nav {
+.nav--container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
   margin-bottom: 100px;
-  margin-bottom: 0;
 }
 
 .nav--title {
   color: white;
   font-size: 42px;
   margin-left: 5%;
+  border: none;
+  background: none;
+  font-family: 'Arial', sans-serif;
+  font-weight: bold;
+}
+
+.nav--title:hover {
+  cursor: pointer;
 }
 
 .nav-elements-container {
@@ -77,7 +84,7 @@ div.nav-elements-container button:hover {
   align-items: center;
   width: 490px;
   height: 360px;
-  margin-top: 100px;
+  margin-top: 50px;
 }
 
 .hero--title {

@@ -5,7 +5,7 @@ export default function ProceedMessageButton(props) {
 
   return (
     <div className='proceed--message--container'>
-        <button className='proceed--message--button'>{props.message}</button>
+        <button className='proceed--message--button' onClick={props.handleClick}>{props.message}</button>
         <img className="arrow--svg" src={arrow}/>
     </div>
   )
