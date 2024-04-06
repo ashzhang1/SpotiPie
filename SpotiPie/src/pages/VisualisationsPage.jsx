@@ -16,13 +16,9 @@ export default function VisualisationsPage() {
   const [topGenres, setTopGenres] = useState([])
   const [topSongs, setTopSongs] = useState([])
 
-  const [meanSongEnergy, setMeanSongEnergy] = useState(0)
-  const [meanSongTempo, setMeanSongTempo] = useState(0)
-  const [meanSongValence, setMeanSongValence] = useState(0)
-  const [meanSongDanceability, setMeanSongDanceability] = useState(0)
+  const [meanSongFeatures, setMeanSongFeatures] = useState({}) //Energy, Tempo, Valence, Danceability
 
-  const [recommendedSongs, setRecommendedSongs] = useState([])
-  const [recommendedAtists, setRecommendedAtists] = useState([])
+  const [recommendedations, setRecommendedations] = useState({})
 
   useEffect(() => {
     var mToken = hash.access_token
@@ -34,6 +30,17 @@ export default function VisualisationsPage() {
   useEffect(() => {
     getTopGenres()
   }, [topArtists])
+
+  useEffect(() => {
+    const testFunc = async () => {
+      try {
+        const result = await getMeanSongFeatures();
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    }
+    testFunc()
+  }, [topSongs])
 
   async function getUsername() {
     try {
@@ -68,10 +75,32 @@ export default function VisualisationsPage() {
           Authorization: "Bearer " + token
         }
       });
-      return response.data.items.map(dataItem => dataItem.name)
+      return response.data.items
     } catch (error) {
       throw error;
     }
+  }
+
+  async function getMeanSongFeatures() {
+    const energyTotal = 0
+    const tempoTotal = 0
+    const valenceTotal = 0
+    const danceabilityTotal = 0
+
+    for (const element of topSongs) {
+      try {
+        const songFeatureApiEndpoints = spotifyEndpoints.songFeatures.replace("{id}", element.id)
+        const response = await axios.get(songFeatureApiEndpoints, {
+          headers: {
+            Authorization: "Bearer " + token
+          }
+        });
+        console.log(response)
+      } catch (error) {
+      throw error;
+      }
+    }
+
   }
 
   function getTopGenres() {
@@ -89,13 +118,12 @@ export default function VisualisationsPage() {
       }
     })
 
-
     for (const [genreName, frequency] of Object.entries(genreFrequencyMap)) {
       genreFrequencyList.push([genreName, frequency])
     }
 
     genreFrequencyList.sort(function(a, b) {
-      return b[1] - a[1]; // Compare b to a for descending order
+      return b[1] - a[1];
     });
 
     setTopGenres(genreFrequencyList)
