@@ -34,7 +34,10 @@ export default function VisualisationsPage() {
   useEffect(() => {
     const testFunc = async () => {
       try {
-        const result = await getMeanSongFeatures();
+        if ((topArtists.length > 0) && (topSongs.length > 0)) {
+          await getMeanSongFeatures()
+          await getRecommendations()
+        }
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -82,10 +85,11 @@ export default function VisualisationsPage() {
   }
 
   async function getMeanSongFeatures() {
-    const energyTotal = 0
-    const tempoTotal = 0
-    const valenceTotal = 0
-    const danceabilityTotal = 0
+    let energyTotal = 0
+    let tempoTotal = 0
+    let valenceTotal = 0
+    let danceabilityTotal = 0
+    const numSongs = topSongs.length
 
     for (const element of topSongs) {
       try {
@@ -95,12 +99,37 @@ export default function VisualisationsPage() {
             Authorization: "Bearer " + token
           }
         });
-        console.log(response)
+        energyTotal += response.data.energy
+        tempoTotal += response.data.tempo
+        valenceTotal += response.data.valence
+        danceabilityTotal += response.data.danceability
       } catch (error) {
       throw error;
       }
     }
+    const songFeaturesObject = {
+      "meanEnergy": energyTotal/numSongs,
+      "meanTempo": tempoTotal/numSongs,
+      "meanValence": valenceTotal/numSongs,
+      "meanDanceability": danceabilityTotal/numSongs
+    }
+    setMeanSongFeatures(songFeaturesObject)
+  }
 
+  async function getRecommendations() {
+    const seedArtistIds = topArtists.map(artist => artist.id).slice(0,5)
+    const seedAristsApiSuffix = seedArtistIds.join(",")
+    try {
+      const response = await axios.get(spotifyEndpoints.recommendations + seedAristsApiSuffix, {
+        headers: {
+          Authorization: "Bearer " + token
+        }
+      });
+      // console.log(response.data.tracks)
+      setRecommendedations(response.data.tracks)
+    } catch (error) {
+      console.error('Error fetching data:', error)
+    }
   }
 
   function getTopGenres() {
@@ -126,7 +155,7 @@ export default function VisualisationsPage() {
       return b[1] - a[1];
     });
 
-    setTopGenres(genreFrequencyList)
+    setTopGenres(genreFrequencyList.slice(0, 10))
 
   }
 
