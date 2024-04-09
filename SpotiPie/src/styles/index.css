@@ -180,8 +180,6 @@ div.nav-elements-container button:hover {
 
 .visualisations--page--title--container {
   margin-left: 5%;
-  /* border-style: dashed;
-  border-color: #00FF5B; */
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -261,7 +259,8 @@ div.nav-elements-container button:hover {
   height: 50px;
 }
 
-.test--text {
-  color: white;
-  font-size: 20px;
+.api--button--container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }

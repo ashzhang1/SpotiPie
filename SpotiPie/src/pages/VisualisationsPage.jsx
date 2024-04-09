@@ -9,6 +9,7 @@ import { spotifyEndpoints } from '../utils/apiEndpoints'
 
 
 export default function VisualisationsPage() {
+  const [loading, setLoading] = useState("");
   const [token, setToken] = useState("")
 
   const [username, setUsername] = useState("")
@@ -160,6 +161,7 @@ export default function VisualisationsPage() {
   }
 
   async function fetchData() {
+    setLoading("loading");
     try {
       const usernameData = await getUsername()
       const topArtistsData = await getTopArtists()
@@ -170,6 +172,8 @@ export default function VisualisationsPage() {
       setTopSongs(topSongsData)
     } catch (error) {
       console.error('Error fetching data:', error)
+    } finally {
+      setLoading("completed"); // Set loading to false when fetching data finishes
     }
   }
   
@@ -185,11 +189,15 @@ export default function VisualisationsPage() {
         <NavBar />
         <div className='visualisations--page--title--container'>
           <h1 className='visualisations--page--title'>Interpreting Your Spotify Data</h1>
-          {token ? <ProceedMessageButton handleClick={async () => await fetchData()} message="Visualise Your Data Now"/> : <ProceedMessageButton message="Login to Visualise Your Data"/>}
+            {token ? 
+              <ProceedMessageButton handleClick={async () => await fetchData()} message={loading==="loading" ? "Loading..." : "Visualise Your Data Now"}/> : 
+              <ProceedMessageButton message="Login to Visualise Your Data"/>
+            }
         </div>
         <div className='all--cards--container'>
           {cards}
         </div>
+        
     </div>
   )
 }
