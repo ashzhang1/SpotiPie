@@ -18,8 +18,8 @@ SpotiPie is an interactive web application that provides Spotify users with insi
 To get started with SpotiPie, follow these steps:
 
 1. Clone the repository: `git clone https://github.com/your-username/spotipie.git`
-2. Go to the correct directory: 'cd SpotiPie'
+2. Go to the correct directory: `cd SpotiPie`
 3. Install dependencies: `npm install`
-4. Run: 'npm run dev'
+4. Run: `npm run dev`
 
 ## This project is currently a WIP!
