@@ -22,4 +22,4 @@ To get started with SpotiPie, follow these steps:
 3. Install dependencies: `npm install`
 4. Run: 'npm run dev'
 
-## This project is cuurently a WIP!
+## This project is curently a WIP!
