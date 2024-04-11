@@ -6,6 +6,7 @@ import data from '../data/visualisationInfoCards.json';
 import VisualisationInfoCard from '../components/VisualisationInfoCard';
 import hash from '../utils/Hash';
 import { spotifyEndpoints } from '../utils/apiEndpoints'
+import TopGenresPieChart from '../components/TopGenresPieChart';
 
 
 export default function VisualisationsPage() {
@@ -126,7 +127,6 @@ export default function VisualisationsPage() {
           Authorization: "Bearer " + token
         }
       });
-      // console.log(response.data.tracks)
       setRecommendedations(response.data.tracks)
     } catch (error) {
       console.error('Error fetching data:', error)
@@ -136,7 +136,6 @@ export default function VisualisationsPage() {
   function getTopGenres() {
     const allGenres = []
     const genreFrequencyMap = {}
-    const genreFrequencyList = []
     topArtists.forEach(artist => allGenres.push(...artist.genres))
 
     allGenres.forEach((element) => {
@@ -148,16 +147,49 @@ export default function VisualisationsPage() {
       }
     })
 
-    for (const [genreName, frequency] of Object.entries(genreFrequencyMap)) {
-      genreFrequencyList.push([genreName, frequency])
+    let genreFrequencyList = Object.entries(genreFrequencyMap)
+    genreFrequencyList.sort((a, b) => b[1] - a[1])
+
+    const top10Genres = genreFrequencyList.slice(0,10)
+    let sortedFrequencyMap = Object.fromEntries(top10Genres)
+
+    const genreFrequencies = Object.values(sortedFrequencyMap)
+    const genreNames = Object.keys(sortedFrequencyMap)
+
+    const chartData = {
+      datasets: [{
+        label: 'Ranking',
+        data: genreFrequencies,
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 205, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)',
+          'rgba(255, 205, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)'
+        ],
+        borderWidth: 1      
+        }],
+        labels: genreNames
     }
-
-    genreFrequencyList.sort(function(a, b) {
-      return b[1] - a[1];
-    });
-
-    setTopGenres(genreFrequencyList.slice(0, 10))
-
+    console.log(chartData)
+    setTopGenres(chartData)
   }
 
   async function fetchData() {
@@ -173,7 +205,7 @@ export default function VisualisationsPage() {
     } catch (error) {
       console.error('Error fetching data:', error)
     } finally {
-      setLoading("completed"); // Set loading to false when fetching data finishes
+      setLoading("completed");
     }
   }
   
@@ -186,18 +218,20 @@ export default function VisualisationsPage() {
 
   return (
     <div className='visualisations--page--container'>
-        <NavBar />
-        <div className='visualisations--page--title--container'>
-          <h1 className='visualisations--page--title'>Interpreting Your Spotify Data</h1>
-            {token ? 
-              <ProceedMessageButton handleClick={async () => await fetchData()} message={loading==="loading" ? "Loading..." : "Visualise Your Data Now"}/> : 
-              <ProceedMessageButton message="Login to Visualise Your Data"/>
-            }
+        <div className='visualisations--home--container'>
+          <NavBar />
+          <div className='visualisations--page--title--container'>
+            <h1 className='visualisations--page--title'>Interpreting Your Spotify Data</h1>
+              {token ? 
+                <ProceedMessageButton handleClick={async () => await fetchData()} message={loading==="loading" ? "Loading..." : "Visualise Your Data Now"}/> : 
+                <ProceedMessageButton message="Login to Visualise Your Data"/>
+              }
+          </div>
+          <div className='all--cards--container'>
+            {cards}
+          </div>
         </div>
-        <div className='all--cards--container'>
-          {cards}
-        </div>
-        
+        {loading==="completed" && <TopGenresPieChart chartData={topGenres}/>} 
     </div>
   )
 }

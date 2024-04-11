@@ -264,3 +264,21 @@ div.nav-elements-container button:hover {
   flex-direction: column;
   justify-content: center;
 }
+
+.visualisations--home--container {
+  width: 100vw;
+  height: 100vh;
+  color: #121212;
+}
+
+
+.top--genres--container {
+  width: 100vw;
+  height: 100vh;
+  background-color: white;
+}
+
+.top--genres--title {
+  color: black;
+  font-size: 40px;
+}
