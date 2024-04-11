@@ -5,40 +5,43 @@ import ProceedMessageButton from '../components/ProceedMessageButton';
 import data from '../data/visualisationInfoCards.json';
 import VisualisationInfoCard from '../components/VisualisationInfoCard';
 import hash from '../utils/Hash';
-import { spotifyEndpoints } from '../utils/apiEndpoints'
+import { spotifyEndpoints } from '../utils/apiEndpoints';
 import TopGenresPieChart from '../components/TopGenresPieChart';
+import TopTacksGraph from '../components/TopTacksGraph';
+import TopArtistsGraph from '../components/TopArtistsGraph';
+import TrackAnalysis from '../components/TrackAnalysis';
 
 
 export default function VisualisationsPage() {
   const [loading, setLoading] = useState("");
-  const [token, setToken] = useState("")
+  const [token, setToken] = useState("");
 
-  const [username, setUsername] = useState("")
-  const [topArtists, setTopArtists] = useState([])
-  const [topGenres, setTopGenres] = useState([])
-  const [topSongs, setTopSongs] = useState([])
+  const [username, setUsername] = useState("");
+  const [topArtists, setTopArtists] = useState([]);
+  const [topGenres, setTopGenres] = useState([]);
+  const [topSongs, setTopSongs] = useState({});
 
   const [meanSongFeatures, setMeanSongFeatures] = useState({}) //Energy, Tempo, Valence, Danceability
 
-  const [recommendedations, setRecommendedations] = useState({})
+  const [recommendedations, setRecommendedations] = useState({});
 
   useEffect(() => {
-    var mToken = hash.access_token
+    var mToken = hash.access_token;
     if (mToken) {
-      setToken(mToken)
+      setToken(mToken);
     }
   })
 
   useEffect(() => {
-    getTopGenres()
+    getTopGenres();
   }, [topArtists])
 
   useEffect(() => {
     const testFunc = async () => {
       try {
         if ((topArtists.length > 0) && (topSongs.length > 0)) {
-          await getMeanSongFeatures()
-          await getRecommendations()
+          await getMeanSongFeatures();
+          await getRecommendations();
         }
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -54,7 +57,7 @@ export default function VisualisationsPage() {
           Authorization: "Bearer " + token
         }
       });
-      return response.data.display_name
+      return response.data.display_name;
     } catch (error) {
       throw error;
     }
@@ -67,7 +70,7 @@ export default function VisualisationsPage() {
           Authorization: "Bearer " + token
         }
       });
-      return response.data.items
+      return response.data.items;
     } catch (error) {
       throw error;
     }
@@ -80,130 +83,91 @@ export default function VisualisationsPage() {
           Authorization: "Bearer " + token
         }
       });
-      return response.data.items
+      return response.data.items;
     } catch (error) {
       throw error;
     }
   }
 
   async function getMeanSongFeatures() {
-    let energyTotal = 0
-    let tempoTotal = 0
-    let valenceTotal = 0
-    let danceabilityTotal = 0
-    const numSongs = topSongs.length
+    let energyTotal = 0;
+    let valenceTotal = 0;
+    let danceabilityTotal = 0;
+    const numSongs = topSongs.length;
 
     for (const element of topSongs) {
       try {
-        const songFeatureApiEndpoints = spotifyEndpoints.songFeatures.replace("{id}", element.id)
+        const songFeatureApiEndpoints = spotifyEndpoints.songFeatures.replace("{id}", element.id);
         const response = await axios.get(songFeatureApiEndpoints, {
           headers: {
             Authorization: "Bearer " + token
           }
         });
-        energyTotal += response.data.energy
-        tempoTotal += response.data.tempo
-        valenceTotal += response.data.valence
-        danceabilityTotal += response.data.danceability
+        energyTotal += response.data.energy;
+        valenceTotal += response.data.valence;
+        danceabilityTotal += response.data.danceability;
       } catch (error) {
       throw error;
       }
     }
     const songFeaturesObject = {
       "meanEnergy": energyTotal/numSongs,
-      "meanTempo": tempoTotal/numSongs,
       "meanValence": valenceTotal/numSongs,
       "meanDanceability": danceabilityTotal/numSongs
     }
-    setMeanSongFeatures(songFeaturesObject)
+    setMeanSongFeatures(songFeaturesObject);
   }
 
   async function getRecommendations() {
-    const seedArtistIds = topArtists.map(artist => artist.id).slice(0,5)
-    const seedAristsApiSuffix = seedArtistIds.join(",")
+    const seedArtistIds = topArtists.map(artist => artist.id).slice(0,5);
+    const seedAristsApiSuffix = seedArtistIds.join(",");
     try {
       const response = await axios.get(spotifyEndpoints.recommendations + seedAristsApiSuffix, {
         headers: {
           Authorization: "Bearer " + token
         }
       });
-      setRecommendedations(response.data.tracks)
+      setRecommendedations(response.data.tracks);
     } catch (error) {
-      console.error('Error fetching data:', error)
+      console.error('Error fetching data:', error);
     }
   }
 
   function getTopGenres() {
-    const allGenres = []
-    const genreFrequencyMap = {}
-    topArtists.forEach(artist => allGenres.push(...artist.genres))
+    const allGenres = [];
+    const genreFrequencyMap = {};
+    topArtists.forEach(artist => allGenres.push(...artist.genres));
 
     allGenres.forEach((element) => {
       if (genreFrequencyMap[element]) {
-        genreFrequencyMap[element] += 1
+        genreFrequencyMap[element] += 1;
       }
       else {
-        genreFrequencyMap[element] = 1
+        genreFrequencyMap[element] = 1;
       }
     })
 
-    let genreFrequencyList = Object.entries(genreFrequencyMap)
-    genreFrequencyList.sort((a, b) => b[1] - a[1])
+    let genreFrequencyList = Object.entries(genreFrequencyMap);
+    genreFrequencyList.sort((a, b) => b[1] - a[1]);
 
-    const top10Genres = genreFrequencyList.slice(0,10)
-    let sortedFrequencyMap = Object.fromEntries(top10Genres)
+    const top10Genres = genreFrequencyList.slice(0,10);
+    let sortedFrequencyMap = Object.fromEntries(top10Genres);
 
-    const genreFrequencies = Object.values(sortedFrequencyMap)
-    const genreNames = Object.keys(sortedFrequencyMap)
-
-    const chartData = {
-      datasets: [{
-        label: 'Ranking',
-        data: genreFrequencies,
-        backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)',
-          'rgba(255, 159, 64, 0.2)',
-          'rgba(255, 205, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)',
-          'rgba(255, 159, 64, 0.2)'
-        ],
-        borderColor: [
-          'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)',
-          'rgba(255, 205, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)'
-        ],
-        borderWidth: 1      
-        }],
-        labels: genreNames
-    }
-    console.log(chartData)
-    setTopGenres(chartData)
+    setTopGenres(sortedFrequencyMap);
   }
 
   async function fetchData() {
     setLoading("loading");
     try {
-      const usernameData = await getUsername()
-      const topArtistsData = await getTopArtists()
-      const topSongsData = await getTopSongs()
+      const usernameData = await getUsername();
+      const topArtistsData = await getTopArtists();
+      const topSongsData = await getTopSongs();
 
-      setUsername(usernameData)
-      setTopArtists(topArtistsData)
-      setTopSongs(topSongsData)
+      setUsername(usernameData);
+      setTopArtists(topArtistsData);
+      setTopSongs(topSongsData);
     } catch (error) {
-      console.error('Error fetching data:', error)
+      console.error('Error fetching data:', error);
     } finally {
       setLoading("completed");
     }
@@ -231,7 +195,14 @@ export default function VisualisationsPage() {
             {cards}
           </div>
         </div>
-        {loading==="completed" && <TopGenresPieChart chartData={topGenres}/>} 
+        {loading === "completed" && (
+          <>
+            <TopGenresPieChart genreFrequencies={Object.values(topGenres)} genreNames={Object.keys(topGenres)} />
+            <TopTacksGraph topTracks={topSongs}/>
+            <TopArtistsGraph topArtistData={topArtists}/>
+            <TrackAnalysis songFeatures={meanSongFeatures}/>
+          </>
+        )}
     </div>
   )
 }

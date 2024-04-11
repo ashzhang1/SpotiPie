@@ -1,8 +1,8 @@
-import React from "react"
-import GetStartedButton from "./GetStartedButton"
+import React from "react";
+import GetStartedButton from "./GetStartedButton";
 import Feature from "./Feature";
 import data from '../data/features.json';
-import miffyImage from '../assets/miffy.jpeg'
+import miffyImage from '../assets/miffy.jpeg';
 
 export default function FeatureSection() {
 

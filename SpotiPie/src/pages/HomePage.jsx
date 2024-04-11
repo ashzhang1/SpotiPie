@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react';
-import LandingSection from '../components/LandingSection'
-import FeatureSection from '../components/FeatureSection'
-import NavBar from '../components/NavBar'
+import LandingSection from '../components/LandingSection';
+import FeatureSection from '../components/FeatureSection';
+import NavBar from '../components/NavBar';
 
 export default function HomePage() {
 

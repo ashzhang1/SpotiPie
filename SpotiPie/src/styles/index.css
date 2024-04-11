@@ -214,6 +214,7 @@ div.nav-elements-container button:hover {
 .all--cards--container {
   display: flex;
   justify-content: space-evenly;
+
 }
 
 .visualisation--info--card--container {
@@ -269,16 +270,83 @@ div.nav-elements-container button:hover {
   width: 100vw;
   height: 100vh;
   color: #121212;
+  margin: 0;
+  padding: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
 }
 
-
+/* GRAPH STUFF */
 .top--genres--container {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(180deg, #121212 9.62%, #FFFFFF 100%);
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.pie--chart--container {
+  width: 750px;
+}
+
+.top--genres--title {
+  color: white;
+  font-size: 40px;
+  margin: 0;
+  padding: 0;
+}
+
+.top--tracks--container {
+  width: 100vw;
+  height: 100vh;
+  border: 0;
+  background-color: white;
+  margin-top: 0;
+}
+
+.top--tracks--graph {
+  width: 900px;
+}
+
+.top--tracks--title {
+  color: pink;
+  font-size: 40px;
+  margin: 0;
+  padding: 0;
+}
+
+.top--artists--container {
   width: 100vw;
   height: 100vh;
   background-color: white;
 }
 
-.top--genres--title {
-  color: black;
+.top--artists--graph {
+  width: 900px;
+}
+
+.top--artists--title {
+  color: pink;
   font-size: 40px;
+  margin: 0;
+  padding: 0;
+}
+
+.track--analysis--container {
+  width: 100vw;
+  height: 100vh;
+  background-color: white;
+}
+
+.track--analysis--title {
+  color: pink;
+  font-size: 40px;
+  margin: 0;
+  padding: 0;
+}
+
+.track--analysis--graph {
+  width: 900px;
 }

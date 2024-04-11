@@ -1,5 +1,5 @@
-import React from "react"
-import GetStartedButton from "./GetStartedButton"
+import React from "react";
+import GetStartedButton from "./GetStartedButton";
 
 export default function LandingHero() {
 

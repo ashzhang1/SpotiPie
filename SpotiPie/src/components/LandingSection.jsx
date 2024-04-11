@@ -1,6 +1,5 @@
-import React from "react"
-import NavBar from "./NavBar"
-import LandingHero from "./LandingHero"
+import React from "react";
+import LandingHero from "./LandingHero";
 
 export default function LandingSection({ backgroundColor}) {
 

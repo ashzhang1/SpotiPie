@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react"
-import graph from "../assets/svg/graph.svg"
-import calculator from "../assets/svg/calculator.svg"
-import table from "../assets/svg/table.svg"
+import React, { useState, useEffect } from "react";
+import graph from "../assets/svg/graph.svg";
+import calculator from "../assets/svg/calculator.svg";
+import table from "../assets/svg/table.svg";
 
 export default function VisualisationInfoCard(props) {
-    const [image, setImage] = useState("")
+    const [image, setImage] = useState("");
 
     useEffect(() => {
         if (props.imgSource === "graph") {

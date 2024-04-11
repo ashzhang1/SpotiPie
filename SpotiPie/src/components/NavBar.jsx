@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 import { useLocation } from 'react-router-dom';
 
 export default function NavBar({ onFeaturesClick}) {
@@ -6,13 +6,13 @@ export default function NavBar({ onFeaturesClick}) {
 
   const routeToPage = button => {
     if (button === 'Visualisations') {
-      window.location.href = '/test'
+      window.location.href = '/test';
     }
     else if (button === 'GitHub') {
       window.open("https://github.com/ashzhang1?tab=repositories", "_blank", "noreferrer");
     }
     else if (button === 'Features') {
-      window.location.href = '/'
+      window.location.href = '/';
     }
   }
 
