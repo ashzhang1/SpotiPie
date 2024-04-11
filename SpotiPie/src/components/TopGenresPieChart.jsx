@@ -38,12 +38,24 @@ export default function TopGenresPieChart(props) {
       }],
       labels: props.genreNames
   };
-  
+
+  const legendOptions = {
+    labels: {
+      color: 'white' // Change the color of legend text to white
+    }
+  };
+
+  const options = {
+    plugins: {
+      legend: legendOptions
+    }
+  };
+
   return (
     <div className="top--genres--container">
       <h1 className="top--genres--title">YOUR TOP GENRES</h1>
         <div className="pie--chart--container">
-          <Doughnut data={chartData} />
+          <Doughnut data={chartData} options={options}/>
         </div>
     </div>
   )

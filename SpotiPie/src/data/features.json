@@ -5,8 +5,8 @@
             "description": "Unveil your musical journey with charts and graphs showcasing your top artists, genres, and songs."
         },
         {
-            "name": "Listening Time",
-            "description": "Track your beat over by visualising your listening time over the last 3 months."
+            "name": "Recommendations",
+            "description": "Explore new tracks by unlocking personalised recommendations that are aligned to your listening history."
         }
     ]
 }
