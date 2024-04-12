@@ -2,7 +2,7 @@ import React from "react";
 import GetStartedButton from "./GetStartedButton";
 import Feature from "./Feature";
 import data from '../data/features.json';
-import miffyImage from '../assets/miffy.jpeg';
+import graphImage from '../assets/graph.jpeg';
 
 export default function FeatureSection() {
 
@@ -21,7 +21,7 @@ export default function FeatureSection() {
         </div>
         <GetStartedButton />
       </div>
-      <img className="feature--page--image" src={miffyImage}/>
+      <img className="feature--page--image" src={graphImage}/>
     </div>
   )
 }

@@ -11,6 +11,7 @@ import TopTacksGraph from '../components/TopTacksGraph';
 import TopArtistsGraph from '../components/TopArtistsGraph';
 import TrackAnalysis from '../components/TrackAnalysis';
 import Recommendations from '../components/Recommendations';
+import Footer from '../components/Footer';
 
 
 export default function VisualisationsPage() {
@@ -205,6 +206,7 @@ export default function VisualisationsPage() {
             <Recommendations data={recommendedations}/>
           </>
         )}
+        <Footer />
     </div>
   )
 }

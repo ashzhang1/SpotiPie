@@ -9,7 +9,7 @@ export default function NavBar({ onFeaturesClick}) {
       window.location.href = '/test';
     }
     else if (button === 'GitHub') {
-      window.open("https://github.com/ashzhang1?tab=repositories", "_blank", "noreferrer");
+      window.open("https://github.com/ashzhang1/SpotiPie", "_blank", "noreferrer");
     }
     else if (button === 'Features') {
       window.location.href = '/';

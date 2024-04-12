@@ -2,6 +2,7 @@ import { useState, useRef } from 'react';
 import LandingSection from '../components/LandingSection';
 import FeatureSection from '../components/FeatureSection';
 import NavBar from '../components/NavBar';
+import Footer from '../components/Footer';
 
 export default function HomePage() {
 
@@ -12,7 +13,7 @@ export default function HomePage() {
   };
 
   return (
-    <div>
+    <>
         <div className='home--page--landing--section'>
             <NavBar onFeaturesClick={handleFeaturesClick}/>
             <LandingSection/>
@@ -20,6 +21,7 @@ export default function HomePage() {
         <div ref={featureSectionRef} className='home--page--feature--section'>
             <FeatureSection />
         </div>
-    </div>
+        <Footer />
+    </>
   )
 }
