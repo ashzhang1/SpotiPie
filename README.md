@@ -12,7 +12,7 @@ SpotiPie is an interactive web application that provides Spotify users with insi
 - **React.js**: SpotiPie is built using React.js, providing a a sleek and modern user interface.
 - **Chart.js**: Visualizations are powered by Chart.js, enabling the creation of interactive and customizable charts.
 - **Spotify API**: SpotiPie integrates with the Spotify API to access user data securely.
-- - **Axios**: Axios is used to make HTTP requests to the Spotify API.
+- **Axios**: Axios is used to make HTTP requests to the Spotify API.
 
 ## Getting Started
 
