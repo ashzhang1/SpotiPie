@@ -10,6 +10,7 @@ import TopGenresPieChart from '../components/TopGenresPieChart';
 import TopTacksGraph from '../components/TopTacksGraph';
 import TopArtistsGraph from '../components/TopArtistsGraph';
 import TrackAnalysis from '../components/TrackAnalysis';
+import Recommendations from '../components/Recommendations';
 
 
 export default function VisualisationsPage() {
@@ -23,7 +24,7 @@ export default function VisualisationsPage() {
 
   const [meanSongFeatures, setMeanSongFeatures] = useState({}) //Energy, Tempo, Valence, Danceability
 
-  const [recommendedations, setRecommendedations] = useState({});
+  const [recommendedations, setRecommendedations] = useState([]);
 
   useEffect(() => {
     var mToken = hash.access_token;
@@ -127,7 +128,7 @@ export default function VisualisationsPage() {
           Authorization: "Bearer " + token
         }
       });
-      setRecommendedations(response.data.tracks);
+      console.log(response.data.tracks);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -201,6 +202,7 @@ export default function VisualisationsPage() {
             <TopTacksGraph topTracks={topSongs}/>
             <TopArtistsGraph topArtistData={topArtists}/>
             <TrackAnalysis songFeatures={meanSongFeatures}/>
+            <Recommendations data={recommendedations}/>
           </>
         )}
     </div>

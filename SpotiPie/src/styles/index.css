@@ -360,5 +360,47 @@ div.nav-elements-container button:hover {
 }
 
 .track--analysis--graph {
-  width: 1100px;
+  width: 900px;
+}
+
+.recommendations--title {
+  color: #44836C;
+  font-size: 72px;
+  margin: 0;
+  padding: 0;
+}
+
+.recommendations--container {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(180deg, #FFFFFF 0%, #000000 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.recommended--track--container {
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: 100px auto;
+  grid-gap: 20px;
+  align-items: center;
+  width: 40vw;
+  margin-bottom: 25px;
+}
+
+
+.album--cover {
+  width: 100%;
+  height: auto;
+}
+
+.track--info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.track--name, .track--artist {
+  margin: 0;
 }
