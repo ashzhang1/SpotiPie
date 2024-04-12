@@ -24,3 +24,17 @@ To get started with SpotiPie, follow these steps:
 4. Run: `npm run dev`
 
 ## This project is currently a WIP!
+live site url: https://spotipie.netlify.app/
+Before we can allow anyone to view their data, I am still in the process of moving my app from 'development mode' into extended quota mode.
+This will process will take within six weeks. HURRY UP SPOTIFY!
+
+## Future Improvements List
+- Need to add more information to the graphs
+- Need to make webapp dynamic to any screen size.
+
+## Concluding Comments
+This website is my first serious React.js project. Leading up I have not had much experience and have learnt heaps along this journey.
+I am super proud of what I have accomplished and am looking forward to implement improvements and build even better projects in the future.
+This is just the beginning!
+
+## Demo Video
