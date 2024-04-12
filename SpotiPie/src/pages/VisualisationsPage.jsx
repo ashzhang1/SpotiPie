@@ -188,8 +188,8 @@ export default function VisualisationsPage() {
           <div className='visualisations--page--title--container'>
             <h1 className='visualisations--page--title'>Interpreting Your Spotify Data</h1>
               {token ? 
-                <ProceedMessageButton handleClick={async () => await fetchData()} message={loading==="loading" ? "Loading..." : "Visualise Your Data Now"}/> : 
-                <ProceedMessageButton message="Login to Visualise Your Data"/>
+                <ProceedMessageButton handleClick={async () => await fetchData()} loadingStatus={loading} tokenReady='true'/> : 
+                <ProceedMessageButton loadingStatus={loading} tokenReady='false'/>
               }
           </div>
           <div className='all--cards--container'>

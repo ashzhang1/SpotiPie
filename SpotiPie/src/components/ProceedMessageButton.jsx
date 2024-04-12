@@ -14,9 +14,20 @@ export default function ProceedMessageButton(props) {
     }
   };
 
+  let message = "";
+  if (props.loadingStatus === "" && props.tokenReady === "true") {
+    message = "Visualise Your Data Now";
+  } else if (props.loadingStatus === "loading" && props.tokenReady === "true") {
+    message = "Loading...";
+  } else if (props.loadingStatus === "completed" && props.tokenReady === "true") {
+    message = "Scroll Down to View Your Data";
+  } else if (props.tokenReady === 'false') {
+    message = "Please Login to View Your Data";
+  }
+
   return (
     <div className='proceed--message--container'>
-        <button className='proceed--message--button' onClick={handleClick}>{props.message}</button>
+        <button className='proceed--message--button' onClick={handleClick}>{message}</button>
         <img className="arrow--svg" src={arrow}/>
     </div>
   )
