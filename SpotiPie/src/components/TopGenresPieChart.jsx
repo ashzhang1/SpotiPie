@@ -8,7 +8,7 @@ export default function TopGenresPieChart(props) {
 
   const chartData = {
     datasets: [{
-      label: 'Ranking',
+      label: 'Popularity',
       data: props.genreFrequencies,
       backgroundColor: [
         'rgba(255, 99, 132)',
@@ -53,7 +53,7 @@ export default function TopGenresPieChart(props) {
 
   return (
     <div className="top--genres--container">
-      <h1 className="top--genres--title">YOUR TOP GENRES</h1>
+      <h1 className="top--genres--title">Your Top Genres</h1>
         <div className="pie--chart--container">
           <Doughnut data={chartData} options={options}/>
         </div>
