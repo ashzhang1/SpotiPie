@@ -128,7 +128,7 @@ export default function VisualisationsPage() {
           Authorization: "Bearer " + token
         }
       });
-      console.log(response.data.tracks);
+      setRecommendedations(response.data.tracks);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
