@@ -38,3 +38,7 @@ I am super proud of what I have accomplished and am looking forward to implement
 This is just the beginning!
 
 ## Demo Video
+
+
+https://github.com/ashzhang1/SpotiPie/assets/80301189/1e7d13ec-c3f5-483a-9aae-46e7a37e2483
+
