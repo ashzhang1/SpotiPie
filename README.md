@@ -30,8 +30,7 @@ Before we can allow anyone to view their data, I am still in the process of movi
 This will process will take within six weeks. HURRY UP SPOTIFY!
 
 ## Future Improvements List
-- Need to add more information to the graphs
-- Need to make webapp dynamic to any screen size.
+- Need to make the webapp responsive to smaller screen sizes.
 
 ## Concluding Comments
 This website is my first serious React.js project. Leading up I have not had much experience and have learnt heaps along this journey.
